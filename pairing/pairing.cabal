@@ -1,0 +1,23 @@
+name:                pairing
+version:             0.1.0.0
+license-file:        LICENSE
+author:              Stephen Diehl
+build-type:          Simple
+cabal-version:       >=1.8
+
+library
+  exposed-modules:
+    Params
+    Fq
+    Fq2
+    Fq6
+    Fq12
+    Point
+    Group
+    Pairing
+  build-depends:
+      base == 4.9.*
+    , protolude
+    , bytestring >= 0.10
+    , cryptonite >= 0.21
+    , memory == 0.14.1
