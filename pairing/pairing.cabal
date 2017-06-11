@@ -15,9 +15,12 @@ library
     Point
     Group
     Pairing
+    Test
   build-depends:
       base == 4.9.*
     , protolude
+    , QuickCheck
+    , pretty-show
     , bytestring >= 0.10
     , cryptonite >= 0.21
     , memory == 0.14.1
