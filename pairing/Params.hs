@@ -43,7 +43,6 @@ _k  :: Integer
 _k = 12
 
 -- BN parameter that determines the prime
--- Sometimmes (v)
 _t :: Integer
 _t = 4965661367192848881
 

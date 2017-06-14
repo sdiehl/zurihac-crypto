@@ -23,8 +23,10 @@ With:
 The field `Fp12` is constructed via the following tower:
 
 * `Fp2 = Fp[u] / (u^2 + 1)`
-* `Fp6 = Fp2[v] / (v^3 - Xi)` where `Xi = u + 1`
+* `Fp6 = Fp2[v] / (v^3 - Xi)` where `Xi = u + 9`
 * `Fp12 = Fp6[w] / (w^2 - v)`
+
+The groups used in the pairing:
 
 * The cyclic group `G1` (aka Ec1) is instantiated as `E(Fp)[n]` where `n := p + 1 - t`;
 * The cyclic group `G2` (aka Ec2) is instantiated as the inverse image of `E'(Fp^2)[n]` under a twisting isomorphism from `E'` to `E`
