@@ -20,9 +20,6 @@ import Crypto.Number.Basic (numBits)
 
 {-
 
-CurveSNARK
-----------
-
 The curve equation for a BN curve is:
 E/Fp: y^2 = x^3 + b
 
