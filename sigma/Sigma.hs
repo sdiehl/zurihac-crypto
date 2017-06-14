@@ -59,10 +59,8 @@ verifyProof a' (Proof (k',s)) = lhs == rhs
 
 testProof :: IO Bool
 testProof = do
-  {-a <- generateBetween 0 p-}
   let a = 42
   let a' = pointBaseMul secp256k1 a 
-  let a'' = pointBaseMul secp256k1 (a+1)
   prf <- proof a
-  print (a, a', prf)
+  print (a', prf)
   pure (verifyProof a' prf)

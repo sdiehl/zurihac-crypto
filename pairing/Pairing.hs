@@ -30,11 +30,11 @@ miller_loop Infinity p = fq12one
 miller_loop q Infinity = fq12one
 miller_loop q p = finalExp nf
   where
-    t = q
-    f = fq12one
-
     q1 = frobex _p q    -- pi_p(q)
     q2 = frobex2 _p q1  -- pi_{p^2}(q)
+
+    t = q2
+    f = fq12one
     
     (nf, nt) = go f t naf
 

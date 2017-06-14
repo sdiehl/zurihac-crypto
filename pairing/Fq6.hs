@@ -58,7 +58,7 @@ fq6add :: Fq6 -> Fq6 -> Fq6
 fq6add (Fq6 x y z) (Fq6 a b c) = Fq6 (x+a) (y+b) (z+c)
 
 fq6sub :: Fq6 -> Fq6 -> Fq6
-fq6sub (Fq6 x y z) (Fq6 a b c) = notImplemented
+fq6sub (Fq6 x y z) (Fq6 a b c) = Fq6 (x-a) (y-b) (z-c)
 
 fq6div :: Fq6 -> Fq6 -> Fq6
 fq6div a b = a * fq6inv b
