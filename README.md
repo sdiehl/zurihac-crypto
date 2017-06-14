@@ -6,7 +6,7 @@ ZuriHac
 Small minimal examples of modern cryptographic techniques in Haskell.
 
 * [Elliptic Curves](ecc/)
-* [Commitment Schemes]()
+* [Commitment Schemes](commitment/)
 * [Partial Homomorphic Encryption](homo/)
 * [Zero Knowledge Proofs](sigma/)
 * [Bilinear Maps & Pairing-based Cryptography](pairing/)
