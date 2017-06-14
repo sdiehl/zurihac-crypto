@@ -9,12 +9,11 @@ module Sigma (
 import Protolude
 
 import Crypto.Hash
-import Crypto.Number.F2m
-import Crypto.Random.Types
-import Crypto.Number.Generate
 import Crypto.PubKey.ECC.Prim
 import Crypto.PubKey.ECC.Types
-import Crypto.Number.Serialize
+import Crypto.Number.Serialize (os2ip)
+import Crypto.Number.Generate (generateBetween)
+import Crypto.Random.Types (MonadRandom)
 
 import qualified Data.ByteArray as BA
 

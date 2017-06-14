@@ -5,20 +5,20 @@ Simple implementation of the Optimal Ate Pairing over Barreto-Naehrig Curves.
 
 ```
 t = 4965661367192848881
-p = 36*_t^4 + 36*_t^3 + 24*_t^2 + 6*_t + 1
-r = 36*_t^4 + 36*_t^3 + 18*_t^2 + 6*_t + 1
+p(t) = 36*t^4 + 36*t^3 + 24*t^2 + 6*t + 1
+r(t) = 36*t^4 + 36*t^3 + 18*t^2 + 6*t + 1
 ```
 
 The chosen curve is a BN curve over a 254-bit prime `p` such that `n := p + 1 - t`.
 
-* `b = 3`
-* `p = 21888242871839275222246405745257275088696311157297823662689037894645226208583`
-
-With
-
 ```
 E/Fp: y^2 = x^3 + b
 ```
+
+With:
+
+* `b = 3`
+* `p = 21888242871839275222246405745257275088696311157297823662689037894645226208583`
 
 The field `Fp12` is constructed via the following tower:
 
