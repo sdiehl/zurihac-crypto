@@ -238,7 +238,7 @@ g2AddInverse = quickCheckWith stdArgs { maxSuccess = size } f
 testAll :: IO ()
 testAll = sequence_ [
   -- Fq
-    putStrLn "FP"
+    putStrLn "Fq"
   , testCommMul 
   , testCommAdd 
   , testAssocAdd

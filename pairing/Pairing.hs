@@ -35,8 +35,8 @@ miller_loop Infinity p = fq12one
 miller_loop q Infinity = fq12one
 miller_loop q p = finalExp nf
   where
-    q1 = frobex1 _p q   -- pi_p(q)
-    q2 = frobex2 _p q1  -- pi_{p^2}(q)
+    q1 = frobex1 _q q   -- pi_q(q)
+    q2 = frobex2 _q q1  -- pi_{p^2}(q)
 
     t = q2
     f = fq12one
@@ -92,7 +92,7 @@ finalExp x = x ^ finalExpVal
 
 -- | Precompute final exponent
 finalExpVal :: Integer
-finalExpVal = ((_p ^ _k - 1) `div` _r)
+finalExpVal = ((_q ^ _k - 1) `div` _r)
 
 -------------------------------------------------------------------------------
 -- Point Lifting

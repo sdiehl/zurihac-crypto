@@ -9,6 +9,7 @@ library
   exposed-modules:
     Params
     Fq
+    Fr
     Fq2
     Fq6
     Fq12

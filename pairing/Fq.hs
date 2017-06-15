@@ -6,7 +6,6 @@ module Fq (
 
   new,
   norm,
-
   fpAdd,
   fpSub,
   fpSqr,
@@ -42,18 +41,18 @@ instance Num Fq where
   abs           = fpAbs
   signum        = fpSig
   negate        = fpNeg
-  fromInteger n = Fq (n `mod` _p)
+  fromInteger n = Fq (n `mod` _q)
 
 instance Fractional Fq where
   (/) = fpDiv
   fromRational (a :% b) = Fq a / Fq b
 
 new :: Integer -> Fq
-new a = Fq (a `mod` _p)
+new a = Fq (a `mod` _q)
 
 {-# INLINE norm #-}
 norm :: Fq -> Fq
-norm (Fq a) = Fq (a `mod` _p)
+norm (Fq a) = Fq (a `mod` _q)
 
 {-# INLINE fpAdd #-}
 fpAdd :: Fq -> Fq -> Fq
@@ -73,18 +72,18 @@ fpAbs (Fq a) = (Fq a)
 
 {-# INLINE fpDbl #-}
 fpDbl :: Fq -> Fq
-fpDbl (Fq a) = Fq (shiftL a 1 `mod` _p)
+fpDbl (Fq a) = Fq (shiftL a 1 `mod` _q)
 
 {-# INLINE fpSqr #-}
 fpSqr :: Fq -> Fq
 fpSqr a = fpMul a a
 
 fpSig :: Fq -> Fq
-fpSig (Fq a) = Fq (signum a  `mod` _p)
+fpSig (Fq a) = Fq (signum a  `mod` _q)
 
 {-# INLINE fpNeg #-}
 fpNeg :: Fq -> Fq
-fpNeg (Fq a) = Fq ((-a) `mod` _p)
+fpNeg (Fq a) = Fq ((-a) `mod` _q)
 
 {-# INLINE fpDiv #-}
 fpDiv :: Fq -> Fq -> Fq
@@ -108,11 +107,11 @@ fpOne = Fq 1
 
 random :: MonadRandom m => m Fq
 random = do
-  seed <- generateMax _p
+  seed <- generateMax _q
   pure (Fq seed)
 
 inv :: Fq -> Fq
-inv (Fq a) = Fq ((euclidean a _p) `mod` _p)
+inv (Fq a) = Fq ((euclidean a _q) `mod` _q)
 
 euclidean :: (Integral a) => a -> a -> a
 euclidean a b = fst (inv' a b)

@@ -38,22 +38,22 @@ b2 = (Fq2 3 0) / (Fq2 9 1)
 
 -- ξ^((p-1)/6)
 xiToPMinus1Over6 :: Fq2
-xiToPMinus1Over6 = xi ^ ((_p-1) `div` 6)
+xiToPMinus1Over6 = xi ^ ((_q-1) `div` 6)
 
 -- ξ^((p-1)/3)
 xiToPMinus1Over3 :: Fq2
-xiToPMinus1Over3 = xi ^ ((_p-1) `div` 3)
+xiToPMinus1Over3 = xi ^ ((_q-1) `div` 3)
 
 -- ξ^((p-1)/2)
 xiToPMinus1Over2 :: Fq2
-xiToPMinus1Over2 = xi ^ ((_p-1) `div` 2)
+xiToPMinus1Over2 = xi ^ ((_q-1) `div` 2)
 
 -- ξ^((2p²-2)/3)
 -- a cubic root of unity, mod p
 xiTo2PSquaredMinus2Over3 :: Fq2
-xiTo2PSquaredMinus2Over3 = xi ^ ((2*_p^2-2) `div` 3)
+xiTo2PSquaredMinus2Over3 = xi ^ ((2*_q^2-2) `div` 3)
 
 -- ξ^((2p²-2)/6)
 -- a cubic root of -1, mod p
 xiTo2PSquaredMinus2Over6 :: Fq2
-xiTo2PSquaredMinus2Over6 = xi ^ ((2*_p^2-2) `div` 6)
+xiTo2PSquaredMinus2Over6 = xi ^ ((2*_q^2-2) `div` 6)

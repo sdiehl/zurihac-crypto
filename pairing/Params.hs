@@ -1,7 +1,7 @@
 module Params (
   _a,
   _b,
-  _p,
+  _q,
   _r,
   _t,
   _k,
@@ -47,15 +47,15 @@ _t :: Integer
 _t = 4965661367192848881
 
 -- Fq
-_p :: Integer
-_p = 36*_t^4 + 36*_t^3 + 24*_t^2 + 6*_t + 1
+_q :: Integer
+_q = 36*_t^4 + 36*_t^3 + 24*_t^2 + 6*_t + 1
 
 -- Fr
 _r :: Integer
 _r = 36*_t^4 + 36*_t^3 + 18*_t^2 + 6*_t + 1
 
 _l :: Integer
-_l = (_p - 1) `div` 6
+_l = (_q - 1) `div` 6
 
 -- Froebenius trace
 _trace :: Integer
@@ -70,7 +70,7 @@ _xi_b = 1
 
 -- Number of bits
 _nbits :: Int
-_nbits = numBits _p
+_nbits = numBits _q
 
 _inv :: Integer
 _inv = 0xe4866389

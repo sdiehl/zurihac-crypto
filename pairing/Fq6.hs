@@ -84,7 +84,7 @@ fq6mul (Fq6 a0 a1 a2) (Fq6 b0 b1 b2) = Fq6 c0 c1 c2
     c2 = ((a0+a2) * (b0+b2)) - t0 + t1 - t2
 
 mulXi :: Fq6 -> Fq6
-mulXi (Fq6 x y z) = Fq6 (Fq2.mulXi z) x y
+mulXi (Fq6 x y z) = Fq6 (z*Fq2.xi) x y
 
 divXi :: Fq6 -> Fq6
 divXi (Fq6 x y z) = Fq6 (z/Fq2.xi) x y
