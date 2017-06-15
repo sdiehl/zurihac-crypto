@@ -65,7 +65,7 @@ fq2zero :: Fq2
 fq2zero = fq2int 0
 
 fq2int :: Integer -> Fq2
-fq2int n = Fq2 (fromInteger n) fpZero
+fq2int n = Fq2 (fromInteger n) fqZero
 
 fq2neg :: Fq2 -> Fq2
 fq2neg (Fq2 x y) = Fq2 (-x) (-y)
@@ -87,7 +87,7 @@ fq2mul (Fq2 a0 a1) (Fq2 b0 b1) = Fq2 c0 c1
   where
     aa = a0 * b0
     bb = a1 * b1
-    c0 = bb * fpNqr + aa
+    c0 = bb * fqNqr + aa
     c1 = (a0 + a1) * (b0 + b1) - aa - bb
 
 mulXi :: Fq2 -> Fq2
@@ -101,16 +101,16 @@ fq2sqr (Fq2 a0 a1) = Fq2 c0 c1
   where
     aa = a0 * a0
     bb = a1 * a1
-    c0 = bb * fpNqr + aa
+    c0 = bb * fqNqr + aa
     c1 = (a0 + a1) * (a0 + a1) - aa - bb
 
 fq2iszero :: Fq2 -> Bool
 fq2iszero = (== fq2zero)
 
 fq2inv :: Fq2 -> Fq2
-fq2inv (Fq2 a0 a1) = Fq2 (norm c0) (norm c1)
+fq2inv (Fq2 a0 a1) = Fq2 c0 c1
   where
-    t = fpInv ((a0 ^ 2) - ((a1 ^ 2) * fpNqr))
+    t = fqInv ((a0 ^ 2) - ((a1 ^ 2) * fqNqr))
     c0 = a0 * t
     c1 = -(a1 * t)
 

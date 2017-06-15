@@ -125,7 +125,4 @@ twist2 = twist1 . twist1
 
 toFq12 :: Point Fq -> Point Fq12
 toFq12 Infinity = Infinity
-toFq12 (Point x y) = Point x' y'
-  where
-    x' = Fq12.fq12 (x : replicate 11 0)
-    y' = Fq12.fq12 (y : replicate 11 0)
+toFq12 (Point x y) = Point (Fq12.fq12unit x) (Fq12.fq12unit y)

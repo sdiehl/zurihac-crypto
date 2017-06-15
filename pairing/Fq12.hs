@@ -5,6 +5,7 @@ module Fq12 (
   Fq12(..), 
   fq12,
   fq12int,
+  fq12unit,
   fq12inv,
   fq12one,
   fq12zero,
@@ -62,6 +63,9 @@ fq12 _ = panic "Invalid arguments to fq12"
 
 fq12int :: Integer -> Fq12
 fq12int n = fq12 (fromIntegral n : replicate 11 0)
+
+fq12unit :: Fq -> Fq12
+fq12unit n = fq12 (n : replicate 11 0)
 
 fq12one :: Fq12
 fq12one = fq12int 1

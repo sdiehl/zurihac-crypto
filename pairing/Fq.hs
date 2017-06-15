@@ -5,18 +5,18 @@ module Fq (
   Fq(..),
 
   new,
-  norm,
-  fpAdd,
-  fpSub,
-  fpSqr,
-  fpDbl,
-  fpDiv,
-  fpMul,
-  fpInv,
+  fqAdd,
+  fqSub,
+  fqSqr,
+  fqDbl,
+  fqDiv,
+  fqMul,
+  fqInv,
+  fqNeg,
 
-  fpZero,
-  fpOne,
-  fpNqr,
+  fqZero,
+  fqOne,
+  fqNqr,
 
   random,
 ) where
@@ -36,15 +36,15 @@ newtype Fq = Fq Integer
   deriving (Show, Eq, Bits)
 
 instance Num Fq where
-  (+)           = fpAdd
-  (*)           = fpMul
-  abs           = fpAbs
-  signum        = fpSig
-  negate        = fpNeg
+  (+)           = fqAdd
+  (*)           = fqMul
+  abs           = fqAbs
+  signum        = fqSig
+  negate        = fqNeg
   fromInteger n = Fq (n `mod` _q)
 
 instance Fractional Fq where
-  (/) = fpDiv
+  (/) = fqDiv
   fromRational (a :% b) = Fq a / Fq b
 
 new :: Integer -> Fq
@@ -54,56 +54,56 @@ new a = Fq (a `mod` _q)
 norm :: Fq -> Fq
 norm (Fq a) = Fq (a `mod` _q)
 
-{-# INLINE fpAdd #-}
-fpAdd :: Fq -> Fq -> Fq
-fpAdd (Fq a) (Fq b) = norm (Fq (a+b))
+{-# INLINE fqAdd #-}
+fqAdd :: Fq -> Fq -> Fq
+fqAdd (Fq a) (Fq b) = norm (Fq (a+b))
 
-{-# INLINE fpSub #-}
-fpSub :: Fq -> Fq -> Fq
-fpSub (Fq a) (Fq b) = norm (Fq (a-b))
+{-# INLINE fqSub #-}
+fqSub :: Fq -> Fq -> Fq
+fqSub (Fq a) (Fq b) = norm (Fq (a-b))
 
-{-# INLINE fpMul #-}
-fpMul :: Fq -> Fq -> Fq
-fpMul (Fq a) (Fq b) = norm (Fq (a*b))
+{-# INLINE fqMul #-}
+fqMul :: Fq -> Fq -> Fq
+fqMul (Fq a) (Fq b) = norm (Fq (a*b))
 
-{-# INLINE fpAbs #-}
-fpAbs :: Fq -> Fq
-fpAbs (Fq a) = (Fq a)
+{-# INLINE fqAbs #-}
+fqAbs :: Fq -> Fq
+fqAbs (Fq a) = (Fq a)
 
-{-# INLINE fpDbl #-}
-fpDbl :: Fq -> Fq
-fpDbl (Fq a) = Fq (shiftL a 1 `mod` _q)
+{-# INLINE fqDbl #-}
+fqDbl :: Fq -> Fq
+fqDbl (Fq a) = Fq (shiftL a 1 `mod` _q)
 
-{-# INLINE fpSqr #-}
-fpSqr :: Fq -> Fq
-fpSqr a = fpMul a a
+{-# INLINE fqSqr #-}
+fqSqr :: Fq -> Fq
+fqSqr a = fqMul a a
 
-fpSig :: Fq -> Fq
-fpSig (Fq a) = Fq (signum a  `mod` _q)
+fqSig :: Fq -> Fq
+fqSig (Fq a) = Fq (signum a  `mod` _q)
 
-{-# INLINE fpNeg #-}
-fpNeg :: Fq -> Fq
-fpNeg (Fq a) = Fq ((-a) `mod` _q)
+{-# INLINE fqNeg #-}
+fqNeg :: Fq -> Fq
+fqNeg (Fq a) = Fq ((-a) `mod` _q)
 
-{-# INLINE fpDiv #-}
-fpDiv :: Fq -> Fq -> Fq
-fpDiv a b = fpMul a (inv b)
+{-# INLINE fqDiv #-}
+fqDiv :: Fq -> Fq -> Fq
+fqDiv a b = fqMul a (inv b)
 
-{-# INLINE fpNqr #-}
-fpNqr :: Fq
-fpNqr = Fq Params._nqr
+{-# INLINE fqNqr #-}
+fqNqr :: Fq
+fqNqr = Fq Params._nqr
 
-{-# INLINE fpInv #-}
-fpInv :: Fq -> Fq
-fpInv x = 1 / x
+{-# INLINE fqInv #-}
+fqInv :: Fq -> Fq
+fqInv x = 1 / x
 
-{-# INLINE fpZero #-}
-fpZero :: Fq
-fpZero = Fq 0
+{-# INLINE fqZero #-}
+fqZero :: Fq
+fqZero = Fq 0
 
-{-# INLINE fpOne #-}
-fpOne :: Fq
-fpOne = Fq 1
+{-# INLINE fqOne #-}
+fqOne :: Fq
+fqOne = Fq 1
 
 random :: MonadRandom m => m Fq
 random = do

@@ -45,7 +45,7 @@ instance Arbitrary a => Arbitrary (Point a) where
   arbitrary = Point <$> arbitrary <*> arbitrary
 
 size :: Int
-size = 100
+size = 1000
 
 -------------------------------------------------------------------------------
 -- Fq
@@ -272,11 +272,13 @@ testAll = sequence_ [
   , fq12DistMul
   , fq12MulComm
 
+  -- G1
   , putStrLn "G1"
   , g1Double
   , g1CommAdd
   , g1AddInverse
 
+  -- G2
   , putStrLn "G2"
   , g2Double
   , g2CommAdd

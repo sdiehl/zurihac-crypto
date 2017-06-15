@@ -32,3 +32,8 @@ The groups used in the pairing:
 * The cyclic group `G1` (`Ec1`) is instantiated as `E(Fq)[n]` where `n := q + 1 - t`;
 * The cyclic group `G2` (`Ec2`) is instantiated as the inverse image of `E'(Fq^2)[n]` under a twisting isomorphism from `E'` to `E`
 * the pairing `e: G1 x G2 -> Fq12` is the optimal ate pairing.
+
+License
+-------
+
+MIT
