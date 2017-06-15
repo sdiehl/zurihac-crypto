@@ -2,6 +2,11 @@
 
 module Pairing (
   miller_loop,
+  twist1,
+  twist2,
+  frobex1,
+  frobex2,
+  toFq12,
 ) where
 
 import Fq
@@ -18,7 +23,7 @@ import Protolude
 -------------------------------------------------------------------------------
 
 naf :: [Int]
-naf =  [1, 0, 0, 0, 1, 0, 1, 0, 0, -1, 0, 1, 0, 1, 0, -1, 0, 0, 1, 0, 1,
+naf = [1, 0, 0, 0, 1, 0, 1, 0, 0, -1, 0, 1, 0, 1, 0, -1, 0, 0, 1, 0, 1,
   0, -1, 0, -1, 0, -1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, -1, 0, 1, 0, 0,
   1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 1]
 
@@ -30,7 +35,7 @@ miller_loop Infinity p = fq12one
 miller_loop q Infinity = fq12one
 miller_loop q p = finalExp nf
   where
-    q1 = frobex _p q    -- pi_p(q)
+    q1 = frobex1 _p q   -- pi_p(q)
     q2 = frobex2 _p q1  -- pi_{p^2}(q)
 
     t = q2
@@ -81,14 +86,6 @@ linefunc (Point x1 y1) (Point x2 y2) (Point xt yt)
     m = (xt - x1) - (yt - y1) -- slope
 linefunc _ _ _ = panic "Cannot compute at infinity"
 
-frobex :: Num a => Integer -> Point a -> Point a
-frobex p (Point x y) = Point (x^p) (y^p)
-frobex p Infinity = Infinity
-
-frobex2 :: Num a => Integer -> Point a -> Point a
-frobex2 p (Point x y) = Point (x^(p^2)) (-(y^(p^2)))
-frobex2 p Infinity = Infinity
-
 -- | Final exponentiation
 finalExp :: Fq12 -> Fq12
 finalExp x = x ^ finalExpVal 
@@ -100,6 +97,14 @@ finalExpVal = ((_p ^ _k - 1) `div` _r)
 -------------------------------------------------------------------------------
 -- Point Lifting
 -------------------------------------------------------------------------------
+
+frobex1 :: Num a => Integer -> Point a -> Point a
+frobex1 p (Point x y) = Point (x^p) (y^p)
+frobex1 p Infinity = Infinity
+
+frobex2 :: Num a => Integer -> Point a -> Point a
+frobex2 p (Point x y) = Point (x^(p^2)) (-(y^(p^2)))
+frobex2 p Infinity = Infinity
 
 -- frobenius twist 1
 twist1 :: Point Fq2 -> Point Fq2
@@ -117,7 +122,6 @@ twist1 (Point (Fq2 p0 p1) (Fq2 p2 p3)) = Point q0 q1
 -- frobenius twist 2
 twist2 :: Point Fq2 -> Point Fq2
 twist2 = twist1 . twist1
-
 
 toFq12 :: Point Fq -> Point Fq12
 toFq12 Infinity = Infinity

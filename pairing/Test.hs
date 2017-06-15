@@ -41,7 +41,7 @@ instance Arbitrary a => Arbitrary (Point a) where
   arbitrary = Point <$> arbitrary <*> arbitrary
 
 size :: Int
-size = 1000
+size = 100
 
 -------------------------------------------------------------------------------
 -- Fq
@@ -191,11 +191,45 @@ fq12MulInverse = quickCheckWith stdArgs { maxSuccess = size } f
 -- G1
 -------------------------------------------------------------------------------
 
-groupAdd :: IO ()
-groupAdd = quickCheckWith stdArgs { maxSuccess = size } f
+g1Double :: IO ()
+g1Double = quickCheckWith stdArgs { maxSuccess = size } f
   where
-    f :: Point Fq -> Point Fq -> Point Fq -> Property
-    f a b c = c /= (Point 0 0) ==> gAdd (gAdd a b) c == gAdd a (gAdd b c)
+    f :: Point Fq -> Property
+    f a = pointY a /= 0 ==> gDouble a == gAdd a a
+
+g1CommAdd :: IO ()
+g1CommAdd = quickCheckWith stdArgs { maxSuccess = size } f
+  where
+    f :: Point Fq -> Point Fq -> Property
+    f a b = pointY a /= 0 && pointY b /= 0 ==> gAdd a b == gAdd b a
+
+g1AddInverse :: IO ()
+g1AddInverse = quickCheckWith stdArgs { maxSuccess = size } f
+  where
+    f :: Point Fq -> Bool
+    f a = gAdd a (gNeg a) == Infinity
+
+-------------------------------------------------------------------------------
+-- G2
+-------------------------------------------------------------------------------
+
+g2Double :: IO ()
+g2Double = quickCheckWith stdArgs { maxSuccess = size } f
+  where
+    f :: Point Fq2 -> Property
+    f a = pointY a /= 0 ==> gDouble a == gAdd a a
+
+g2CommAdd :: IO ()
+g2CommAdd = quickCheckWith stdArgs { maxSuccess = size } f
+  where
+    f :: Point Fq2 -> Point Fq2 -> Property
+    f a b = pointY a /= 0 && pointY b /= 0 ==> gAdd a b == gAdd b a
+
+g2AddInverse :: IO ()
+g2AddInverse = quickCheckWith stdArgs { maxSuccess = size } f
+  where
+    f :: Point Fq2 -> Bool
+    f a = gAdd a (gNeg a) == Infinity
 
 -------------------------------------------------------------------------------
 -- Test Suite
@@ -234,5 +268,13 @@ testAll = sequence_ [
   , fq12DistMul
   , fq12MulComm
 
-  {-, groupAdd-}
+  , putStrLn "G1"
+  , g1Double
+  , g1CommAdd
+  , g1AddInverse
+
+  , putStrLn "G2"
+  , g2Double
+  , g2CommAdd
+  , g2AddInverse
   ]

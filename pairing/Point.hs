@@ -2,9 +2,12 @@
 
 module Point (
   Point(..),
+  pointY,
+  pointX,
   gDouble,
   gAdd,
   gNeg,
+  gMul,
 ) where
 
 import Protolude
@@ -21,22 +24,14 @@ pointY :: Point a -> a
 pointY (Point x y) = y
 
 instance (Fractional t, Eq t) => Num (Point t) where
-  (+) = gAdd
-  negate = gNeg
-  (*) = notImplemented
-  abs = notImplemented
-  signum = notImplemented
+  (+)         = gAdd
+  negate      = gNeg
+  (*)         = notImplemented
+  abs         = notImplemented
+  signum      = notImplemented
   fromInteger = notImplemented
 
-
-gDouble :: Fractional t => Point t -> Point t
-gDouble Infinity = Infinity
-gDouble (Point x y) = Point x' y'
-  where
-    l = 3*x^2 / (2*y)
-    x' = l^2 - 2*x
-    y' = -l * x' + l * x - y
-
+-- | Addition
 gAdd 
   :: (Fractional t, Eq t)
   => Point t
@@ -53,6 +48,16 @@ gAdd (Point x1 y1) (Point x2 y2)
     x' = l^2 - x1 - x2
     y' = -l * x' + l * x1 - y1
 
+-- | Doubling
+gDouble :: (Fractional t, Eq t) => Point t -> Point t
+gDouble Infinity = Infinity
+gDouble (Point x 0) = Infinity
+gDouble (Point x y) = Point x' y'
+  where
+    l = 3*x^2 / (2*y)
+    x' = l^2 - 2*x
+    y' = -l * x' + l * x - y
+
 -- | Negation
 gNeg  
   :: (Fractional t, Eq t)
@@ -60,3 +65,16 @@ gNeg
   -> Point t
 gNeg Infinity = Infinity
 gNeg (Point x y) = Point x (-y)
+
+
+-- | Multiplication
+gMul 
+  :: (Eq t, Integral a, Fractional t)
+  => Point t
+  -> a 
+  -> Point t
+gMul pt 0 = Infinity
+gMul pt 1 = pt
+gMul pt n
+  | even n    = gMul (gDouble pt) (n `div` 2)
+  | otherwise = gAdd (gMul (gDouble pt) (n `div` 2)) pt
