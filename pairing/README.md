@@ -9,8 +9,8 @@ q(t) = 36*t^4 + 36*t^3 + 24*t^2 + 6*t + 1
 r(t) = 36*t^4 + 36*t^3 + 18*t^2 + 6*t + 1
 ```
 
-The chosen curve is a BN curve over a 254-bit prime `q` such that `n := q + 1 -
-t` with embedding degree of `k=12`.
+The chosen curve is the `ALT_BN128` curve over a 254-bit prime `q` such that `n
+:= q + 1 - t` with embedding degree of `k=12`.
 
 ```
 E/Fq: y^2 = x^3 + b

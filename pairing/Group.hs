@@ -14,9 +14,11 @@ import Fq2
 import Point
 import Params
 
+-- | Generator for G1
 g1 :: Point Fq
 g1 = Point 1 2
 
+-- | Generator for G2
 g2 :: Point Fq2
 g2 = Point x y
   where

@@ -5,6 +5,7 @@ module Test where
 import Protolude
 
 import Fq
+import Fr
 import Fq2
 import Fq6
 import Fq12
@@ -24,6 +25,9 @@ ppDump a = putStrLn (ppShow a :: [Char])
 
 instance Arbitrary Fq where
   arbitrary = Fq.new <$> arbitrary
+
+instance Arbitrary Fr where
+  arbitrary = Fr.new <$> arbitrary
 
 instance Arbitrary Fq2 where
   arbitrary = Fq2 <$> arbitrary <*> arbitrary
