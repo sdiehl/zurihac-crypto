@@ -130,3 +130,4 @@ toFq12 (Point x y) = Point (Fq12.fq12unit x) (Fq12.fq12unit y)
 
 mulW :: Point Fq12 -> Point Fq12
 mulW (Point x y) = Point (x*w2) (y*w3)
+mulW Infinity = Infinity

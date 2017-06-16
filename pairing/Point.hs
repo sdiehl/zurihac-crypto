@@ -17,11 +17,13 @@ data Point a
   | Infinity
   deriving (Eq, Ord, Show, Functor)
 
-pointX :: Point a -> a
+pointX :: Fractional a => Point a -> a
 pointX (Point x _) = x
+pointX Infinity = 1/0
 
-pointY :: Point a -> a
+pointY :: Fractional a => Point a -> a
 pointY (Point _ y) = y
+pointY Infinity = 1/0
 
 instance (Fractional t, Eq t) => Num (Point t) where
   (+)         = gAdd

@@ -10,10 +10,8 @@ import Fq2
 import Fq6
 import Fq12
 import Point
-import Group
 
 import Test.QuickCheck
-
 import Text.Show.Pretty
 
 ppDump :: Show a => a -> IO ()

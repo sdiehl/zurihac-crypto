@@ -21,10 +21,7 @@ module Fq12 (
 import Protolude
 
 import Fq (Fq)
-import Fq2 (Fq2(..))
 import Fq6 (Fq6(..))
-
-import qualified Fq
 import qualified Fq2
 import qualified Fq6
 
@@ -83,6 +80,7 @@ fq12pow x 1 = x
 fq12pow x n
   | even n = fq12pow (x * x) (n `div` 2)
   | odd n = (fq12pow (x * x) (n `div` 2)) * x
+  | otherwise = panic "Impossible"
 
 fq12sub :: Fq12 -> Fq12 -> Fq12
 fq12sub (Fq12 x y) (Fq12 a b) = Fq12 (x-a) (y-b)

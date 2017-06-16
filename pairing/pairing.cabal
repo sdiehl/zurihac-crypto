@@ -10,6 +10,7 @@ build-type:          Simple
 cabal-version:       >= 1.10
 
 library
+  ghc-options: -fwarn-unused-imports -fwarn-incomplete-patterns
   exposed-modules:
       Params
       Fq
@@ -31,4 +32,3 @@ library
     , pretty-show >=1.6
     , bytestring >=0.10
     , cryptonite >=0.21
-    , memory >=0.14.1

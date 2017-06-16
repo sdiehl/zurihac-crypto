@@ -20,9 +20,7 @@ module Fq6 (
 
 import Protolude hiding (zero, one)
 
-import Fq (Fq)
 import Fq2 (Fq2)
-
 import qualified Fq2
 
 import Crypto.Random (MonadRandom)
