@@ -78,6 +78,7 @@ fqDbl (Fq a) = Fq (shiftL a 1 `mod` _q)
 fqSqr :: Fq -> Fq
 fqSqr a = fqMul a a
 
+{-# INLINE fqSig #-}
 fqSig :: Fq -> Fq
 fqSig (Fq a) = Fq (signum a  `mod` _q)
 

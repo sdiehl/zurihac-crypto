@@ -56,6 +56,7 @@ frDbl (Fr a) = Fr (shiftL a 1 `mod` _r)
 frSqr :: Fr -> Fr
 frSqr a = frMul a a
 
+{-# INLINE frSig #-}
 frSig :: Fr -> Fr
 frSig (Fr a) = Fr (signum a  `mod` _r)
 
