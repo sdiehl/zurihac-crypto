@@ -2,7 +2,7 @@
 {-# LANGUAGE DuplicateRecordFields #-}
 
 module Fq12 (
-  Fq12(..), 
+  Fq12(..),
   fq12,
   fq12int,
   fq12unit,
@@ -55,7 +55,7 @@ random = do
   pure (Fq12 x y)
 
 fq12 :: [Fq] -> Fq12
-fq12 [a,b,c,d,e,f,g,h,i,j,k,l] = Fq12 
+fq12 [a,b,c,d,e,f,g,h,i,j,k,l] = Fq12
   { x = Fq6.new (Fq2.new a b) (Fq2.new c d) (Fq2.new e f)
   , y = Fq6.new (Fq2.new g h) (Fq2.new i j) (Fq2.new k l)
   }
@@ -79,7 +79,7 @@ fq12add (Fq12 x y) (Fq12 a b) = Fq12 (x+a) (y+b)
 fq12pow :: Fq12 -> Integer -> Fq12
 fq12pow x 0 = fq12one
 fq12pow x 1 = x
-fq12pow x n 
+fq12pow x n
   | even n = fq12pow (x * x) (n `div` 2)
   | odd n = (fq12pow (x * x) (n `div` 2)) * x
 

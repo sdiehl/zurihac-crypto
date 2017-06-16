@@ -119,7 +119,7 @@ euclidean a b = fst (inv' a b)
 {-# INLINEABLE inv' #-}
 {-# SPECIALISE inv' :: Integer -> Integer -> (Integer, Integer) #-}
 inv' :: (Integral a) => a -> a -> (a, a)
-inv' a b = 
+inv' a b =
   case b of
    1 -> (0, 1)
    _ -> let (e, f) = inv' b d

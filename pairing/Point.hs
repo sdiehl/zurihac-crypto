@@ -18,10 +18,10 @@ data Point a
   deriving (Eq, Ord, Show, Functor)
 
 pointX :: Point a -> a
-pointX (Point x y) = x
+pointX (Point x _) = x
 
 pointY :: Point a -> a
-pointY (Point x y) = y
+pointY (Point _ y) = y
 
 instance (Fractional t, Eq t) => Num (Point t) where
   (+)         = gAdd
@@ -32,14 +32,14 @@ instance (Fractional t, Eq t) => Num (Point t) where
   fromInteger = notImplemented
 
 -- | Addition
-gAdd 
+gAdd
   :: (Fractional t, Eq t)
   => Point t
   -> Point t
   -> Point t
 gAdd Infinity a = Infinity
 gAdd a Infinity = Infinity
-gAdd (Point x1 y1) (Point x2 y2) 
+gAdd (Point x1 y1) (Point x2 y2)
   | x2 == x1 && y2 == y1 = gDouble (Point x1 y1)
   | x2 == x1             = Infinity
   | otherwise            = Point x' y'
@@ -59,7 +59,7 @@ gDouble (Point x y) = Point x' y'
     y' = -l * x' + l * x - y
 
 -- | Negation
-gNeg  
+gNeg
   :: (Fractional t, Eq t)
   => Point t
   -> Point t
@@ -68,10 +68,10 @@ gNeg (Point x y) = Point x (-y)
 
 
 -- | Multiplication
-gMul 
+gMul
   :: (Eq t, Integral a, Fractional t)
   => Point t
-  -> a 
+  -> a
   -> Point t
 gMul pt 0 = Infinity
 gMul pt 1 = pt

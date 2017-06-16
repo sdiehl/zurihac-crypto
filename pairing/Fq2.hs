@@ -76,7 +76,7 @@ fq2add (Fq2 x y) (Fq2 a b) = Fq2 (x+a) (y+b)
 fq2sub :: Fq2 -> Fq2 -> Fq2
 fq2sub (Fq2 x y) (Fq2 a b) = Fq2 (x-a) (y-b)
 
-fq2dbl :: Fq2 -> Fq2 
+fq2dbl :: Fq2 -> Fq2
 fq2dbl (Fq2 x y) = Fq2 (shiftL x 1) (shiftL y 1)
 
 fq2div :: Fq2 -> Fq2 -> Fq2

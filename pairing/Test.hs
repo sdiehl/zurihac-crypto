@@ -33,7 +33,7 @@ instance Arbitrary Fq2 where
   arbitrary = Fq2 <$> arbitrary <*> arbitrary
 
 instance Arbitrary Fq6 where
-  arbitrary = Fq6 
+  arbitrary = Fq6
     <$> arbitrary
     <*> arbitrary
     <*> arbitrary
@@ -91,7 +91,7 @@ fq2Pow :: IO ()
 fq2Pow = quickCheckWith stdArgs { maxSuccess = size } f
   where
     f :: Fq2 -> Integer -> Bool
-    f n@(Fq2 a b) p 
+    f n@(Fq2 a b) p
       | p `mod` 4 == 1 = n^p == Fq2 a b
       | p `mod` 4 == 3 = n^p == Fq2 a (-b)
       | otherwise      = True
@@ -243,8 +243,8 @@ testAll :: IO ()
 testAll = sequence_ [
   -- Fq
     putStrLn "Fq"
-  , testCommMul 
-  , testCommAdd 
+  , testCommMul
+  , testCommAdd
   , testAssocAdd
   , testAssocMul
 
