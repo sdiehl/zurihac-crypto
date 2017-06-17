@@ -12,6 +12,7 @@ library
     
   build-depends:
       base       == 4.9.*
+    , pairing    >= 0.1
     , protolude  >= 0.1
     , bytestring == 0.10.*
     , cryptonite == 0.21
