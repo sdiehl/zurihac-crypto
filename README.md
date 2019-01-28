@@ -10,7 +10,7 @@ Small minimal examples of modern cryptographic techniques in Haskell.
 * [Partial Homomorphic Encryption](homo/)
 * [Zero Knowledge Proofs](sigma/)
 * [Bilinear Maps & Pairing-based Cryptography](pairing/)
-* [Verifiable Computation](zkp/)
+* [Verifiable Computation](https://github.com/adjoint-io/pairing)
 
 License 
 -------
