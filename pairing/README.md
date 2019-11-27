@@ -11,3 +11,4 @@ for pairing implementation over BN254 and BLS12-381 curves.
 * http://hackage.haskell.org/package/pairing-0.3.0
 * http://hackage.haskell.org/package/pairing-0.4.1
 * http://hackage.haskell.org/package/pairing-0.5.0
+* http://hackage.haskell.org/package/pairing-1.0.0
